@@ -41,8 +41,7 @@
   input {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
+    margin: 2px 2px 15px -7px;
     border: 2px solid #ccc;
     border-radius: 8px;
     font-size: 16px;
@@ -71,17 +70,19 @@
   }
   
   .results {
-    padding-left: 20px;
+    margin-top: 30px;
+    text-align: center;
   }
   
-  .results h2 {
+  
+  h3 {
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #333;
   }
-  
+
   .results span {
-    font-size: 28px;
+    font-size: 40px;
     font-weight: bold;
     color: #ff5e7d;
   }
