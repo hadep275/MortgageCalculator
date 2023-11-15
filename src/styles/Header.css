@@ -1,9 +1,9 @@
-/* Header.css */
 header {
+    margin: 100px 0px 0px 0px;
     text-align: center;
     background-color: #ff5e7d;
     color: #fff;
-    padding: 20px 0;
+    padding: 10px 10px;
   }
   
   header h1 {
