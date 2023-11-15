@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import AdvancedCalculator from './AdvancedCalculator';
 import '../styles/Calculator.css';
 
 const Calculator = () => {
@@ -9,6 +10,7 @@ const Calculator = () => {
   const [loanTerm, setLoanTerm] = useState('');
   const [propertyTaxes, setPropertyTaxes] = useState('');
   const [monthlyPayment, setMonthlyPayment] = useState(null);
+  const [showAdvanced, setShowAdvanced] = useState(false);
 
   const calculateMortgage = () => {
     const principal = parseFloat(loanAmount);
@@ -59,13 +61,21 @@ const Calculator = () => {
           onChange={(e) => setPropertyTaxes(e.target.value)}
         />
       </div>
-    <button onClick={calculateMortgage}>Calculate</button>
+    <button onClick={calculateMortgage}>Calculate </button><button className="advanced-button" onClick={() => setShowAdvanced(!showAdvanced)}>
+        {showAdvanced ? <FontAwesomeIcon icon={faMinus} />: <FontAwesomeIcon icon={faPlus} />}
+      </button>
     {monthlyPayment !== null && (
       <div className="results">
         <h3>Monthly Payment</h3>
         <span>${monthlyPayment}</span>
       </div>
     )}
+
+    {/* <button className="advanced-button" onClick={() => setShowAdvanced(!showAdvanced)}>
+        {showAdvanced ? <FontAwesomeIcon icon={faMinus} />: <FontAwesomeIcon icon={faPlus} />}
+      </button> */}
+      {showAdvanced && <AdvancedCalculator />}
+
   </div>
 );
 };
