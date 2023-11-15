@@ -7,7 +7,7 @@ import './styles/App.css';
 const App = () => {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <Calculator />
     </div>
   );
