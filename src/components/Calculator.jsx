@@ -1,5 +1,6 @@
-// Calculator.js
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 import '../styles/Calculator.css';
 
 const Calculator = () => {
@@ -25,7 +26,7 @@ const Calculator = () => {
 
   return (
     <div className="calculator">
-    <h2>Mortgage Calculator</h2>
+    <h2><FontAwesomeIcon icon={faHome} bounce size="sm" className='bounce'/> Mortgage Calculator</h2>
     <div className="input-group">
       <label>Loan Amount ($)</label>
       <input
