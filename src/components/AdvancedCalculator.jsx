@@ -17,39 +17,39 @@ const AdvancedCalculator = ({ onCalculate }) => {
   const [condoFees, setCondoFees] = useState('');
   const [homeInsurance, setHomeInsurance] = useState('');
   const [paydownOptions, setPaydownOptions] = useState('');
+  const [totalCost, setTotalCost] = useState(null);
 
+  
   const handleCalculate = () => {
-    const [lumpSumPaymentValue, setLumpSumPaymentValue] = useState(0);
-const [downPaymentValue, setDownPaymentValue] = useState(0);
-const [mortgageInsuranceValue, setMortgageInsuranceValue] = useState(0);
-const [landTransferTaxValue, setLandTransferTaxValue] = useState(0);
-const [lawyerFeesValue, setLawyerFeesValue] = useState(0);
-const [titleInsuranceValue, setTitleInsuranceValue] = useState(0);
-const [homeInspectionFeesValue, setHomeInspectionFeesValue] = useState(0);
-const [appraisalFeesValue, setAppraisalFeesValue] = useState(0);
-const [utilitiesValue, setUtilitiesValue] = useState(0);
-const [condoFeesValue, setCondoFeesValue] = useState(0);
-const [homeInsuranceValue, setHomeInsuranceValue] = useState(0);
-const [paydownOptionsValue, setPaydownOptionsValue] = useState(0);
+    const lumpSumPaymentValue = parseFloat(lumpSumPayment) || 0;
+    const downPaymentValue = parseFloat(downPayment) || 0;
+    const mortgageInsuranceValue = parseFloat(mortgageInsurance) || 0;
+    const landTransferTaxValue = parseFloat(landTransferTax) || 0;
+    const lawyerFeesValue = parseFloat(lawyerFees) || 0;
+    const titleInsuranceValue = parseFloat(titleInsurance) || 0;
+    const homeInspectionFeesValue = parseFloat(homeInspectionFees) || 0;
+    const appraisalFeesValue = parseFloat(appraisalFees) || 0;
+    const utilitiesValue = parseFloat(utilities) || 0;
+    const condoFeesValue = parseFloat(condoFees) || 0;
+    const homeInsuranceValue = parseFloat(homeInsurance) || 0;
+    const paydownOptionsValue = parseFloat(paydownOptions) || 0;
 
-  const totalCost =
-  lumpSumPaymentValue +
-  downPaymentValue +
-  mortgageInsuranceValue +
-  landTransferTaxValue +
-  lawyerFeesValue +
-  titleInsuranceValue +
-  homeInspectionFeesValue +
-  appraisalFeesValue +
-  utilitiesValue +
-  condoFeesValue +
-  homeInsuranceValue +
-  // Add more cost values here for other expenses
-  paydownOptionsValue;
+    const calculatedTotalCost =
+      lumpSumPaymentValue +
+      downPaymentValue +
+      mortgageInsuranceValue +
+      landTransferTaxValue +
+      lawyerFeesValue +
+      titleInsuranceValue +
+      homeInspectionFeesValue +
+      appraisalFeesValue +
+      utilitiesValue +
+      condoFeesValue +
+      homeInsuranceValue +
+      paydownOptionsValue;
 
-// You can then use the totalCost variable as needed, for example, log it to the console:
-console.log('Total Cost:', totalCost);
-
+      setTotalCost(calculatedTotalCost);
+    console.log('Total Cost:', totalCost);
 
     if (typeof onCalculate === 'function') {
       onCalculate({
@@ -68,8 +68,7 @@ console.log('Total Cost:', totalCost);
         condoFees,
         homeInsurance,
         paydownOptions,
-        totalCost,
-        // Add more calculated values as needed
+        totalCost: calculatedTotalCost,
       });
     }
   };
@@ -101,7 +100,7 @@ console.log('Total Cost:', totalCost);
         <input
           type="number"
           value={lumpSumPayment}
-          onChange={(e) => setLumpSumPaymentValue(e.target.value)}
+          onChange={(e) => setLumpSumPayment(e.target.value)}
         />
       </div>
       <div className="input-group">
@@ -109,7 +108,7 @@ console.log('Total Cost:', totalCost);
         <input
           type="number"
           value={downPayment}
-          onChange={(e) => setDownPaymentValue(e.target.value)}
+          onChange={(e) => setDownPayment(e.target.value)}
         />
       </div>
       <div className="input-group">
@@ -117,11 +116,99 @@ console.log('Total Cost:', totalCost);
         <input
           type="number"
           value={mortgageInsurance}
-          onChange={(e) => setMortgageInsuranceValue(e.target.value)}
+          onChange={(e) => setMortgageInsurance(e.target.value)}
         />
       </div>
-      {/* Add more input fields for other advanced features */}
+<div className="input-group">
+  <label>City</label>
+  <input
+    type="text"
+    value={city}
+    onChange={(e) => setCity(e.target.value)}
+  />
+</div>
+<div className="input-group">
+  <label>Land Transfer Tax ($)</label>
+  <input
+    type="number"
+    value={landTransferTax}
+    onChange={(e) => setLandTransferTax(e.target.value)}
+  />
+</div>
+<div className="input-group">
+  <label>Lawyer Fees ($)</label>
+  <input
+    type="number"
+    value={lawyerFees}
+    onChange={(e) => setLawyerFees(e.target.value)}
+  />
+</div>
+<div className="input-group">
+  <label>Title Insurance ($)</label>
+  <input
+    type="number"
+    value={titleInsurance}
+    onChange={(e) => setTitleInsurance(e.target.value)}
+  />
+</div>
+<div className="input-group">
+  <label>Home Inspection Fees ($)</label>
+  <input
+    type="number"
+    value={homeInspectionFees}
+    onChange={(e) => setHomeInspectionFees(e.target.value)}
+  />
+</div>
+<div className="input-group">
+  <label>Appraisal Fees ($)</label>
+  <input
+    type="number"
+    value={appraisalFees}
+    onChange={(e) => setAppraisalFees(e.target.value)}
+  />
+</div>
+<div className="input-group">
+  <label>Utilities ($)</label>
+  <input
+    type="number"
+    value={utilities}
+    onChange={(e) => setUtilities(e.target.value)}
+  />
+</div>
+<div className="input-group">
+  <label>Condo Fees ($)</label>
+  <input
+    type="number"
+    value={condoFees}
+    onChange={(e) => setCondoFees(e.target.value)}
+  />
+</div>
+<div className="input-group">
+  <label>Home Insurance ($)</label>
+  <input
+    type="number"
+    value={homeInsurance}
+    onChange={(e) => setHomeInsurance(e.target.value)}
+  />
+</div>
+<div className="input-group">
+  <label>Paydown Options ($)</label>
+  <input
+    type="number"
+    value={paydownOptions}
+    onChange={(e) => setPaydownOptions(e.target.value)}
+  />
+</div>
+
       <button onClick={handleCalculate}>Calculate</button>
+
+      {totalCost !== null && (
+        <div className="input-group">
+          <label>Total Cost</label>
+          <span>{totalCost}</span>
+        </div>
+      )}
+
     </div>
   );
 };
