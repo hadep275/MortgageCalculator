@@ -112,12 +112,12 @@
   background-color: #fff; 
   width: fit-content;
   color: black; 
-  padding: 0px 20px 0px 0px; 
+  padding: 0px 0px 0px 0px; 
   text-decoration: none;
   font-size: 30px;
-  margin: 0px 100px 0px 210px;
+  margin: 4px 90px 0px 90px;
   cursor: pointer;
-  position: relative;
+  position: absolute;
 }
 
 .advanced-button:hover {
@@ -126,17 +126,14 @@
 
 /* Add tooltip style */
 .advanced-button::after {
-  content: "Advanced"; /* Tooltip text */
+  content: "Advanced"; 
   position: absolute;
-  background-color: #555;
-  color: #fff;
-  border-radius: 4px;
-  padding: 5px;
-  top: 100%; /* Position it below the button */
+  color: #000;
+  top: 100%; 
   left: 50%;
   transform: translateX(-50%); /* Center horizontally */
   opacity: 0; /* Hide by default */
-  transition: opacity 0.3s;
+  transition: opacity 0.9s ease-in-out;
 }
 
 /* Show tooltip on hover */
