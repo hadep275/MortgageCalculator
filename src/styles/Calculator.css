@@ -128,6 +128,7 @@
 .advanced-button::after {
   content: "Advanced"; 
   position: absolute;
+  font-size: large;
   color: #000;
   top: 100%; 
   left: 50%;
