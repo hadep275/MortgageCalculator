@@ -109,10 +109,11 @@
 }
 
 .advanced-button {
-  background-color: #fff; 
-  width: fit-content;
+  background-color: transparent; 
+  /* width:  fit-content; */
+  width:  30%;
   color: black; 
-  padding: 0px 0px 0px 0px; 
+  padding: 0px 30px 0px 0px; 
   text-decoration: none;
   font-size: 30px;
   margin: 4px 90px 0px 90px;
@@ -121,18 +122,19 @@
 }
 
 .advanced-button:hover {
-  background-color: #fff; 
+  background-color: transparent; 
 }
 
 /* Add tooltip style */
 .advanced-button::after {
   content: "Advanced"; 
   position: absolute;
-  font-size: large;
+  font-size: 13px;
+  font-weight: bold;
   color: #000;
   top: 100%; 
   left: 50%;
-  transform: translateX(-50%); /* Center horizontally */
+  transform: translateX(-75%); /* Center horizontally */
   opacity: 0; /* Hide by default */
   transition: opacity 0.9s ease-in-out;
 }
