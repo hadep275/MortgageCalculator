@@ -131,6 +131,9 @@ input {
 input:hover {
   border-color: #ff5e7d;
 }
+input:focus {
+  box-shadow: 0 0 5px #ff5e7d; 
+}
 
 .input-group {
   display: flex;
@@ -172,8 +175,8 @@ label {
 
 .input-group select:focus {
   outline: none;
-  border-color: #007bff; 
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+  border-color: #333; 
+  box-shadow: 0 0 5px #ff5e7d; 
 }
 
 .input-group select option {
