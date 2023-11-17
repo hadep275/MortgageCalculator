@@ -124,6 +124,7 @@ const AdvancedCalculator = ({ onCalculate }) => {
         >
           <option value="monthly">Monthly</option>
           <option value="bi-weekly">Bi-Weekly</option>
+          <option value="bi-weekly">Weekly</option>
           {/* Add more options based on your requirements */}
         </select>
       </div>
