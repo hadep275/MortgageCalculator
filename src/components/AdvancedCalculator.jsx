@@ -4,7 +4,7 @@ import { provincesAndCitiesData } from './ProvinceAndCities';
 
 const AdvancedCalculator = ({ onCalculate }) => {
   const [province, setProvince] = useState('');
-  const [paymentFrequency, setPaymentFrequency] = useState('monthly');
+  const [paymentFrequency, setPaymentFrequency] = useState('monthly', 'bi-weekly', 'weekly');
   const [lumpSumPayment, setLumpSumPayment] = useState('');
   const [downPayment, setDownPayment] = useState('');
   const [mortgageInsurance, setMortgageInsurance] = useState('');
@@ -83,7 +83,6 @@ const AdvancedCalculator = ({ onCalculate }) => {
 
   return (
     <div>
-      {/* Add input fields and UI for the advanced features */}
       <br></br>
       <br></br>
       <div className="input-group">
@@ -122,10 +121,11 @@ const AdvancedCalculator = ({ onCalculate }) => {
           value={paymentFrequency}
           onChange={(e) => setPaymentFrequency(e.target.value)}
         >
-          <option value="monthly">Monthly</option>
+          <option value="monthly">Monthly (12x per year)</option>
           <option value="bi-weekly">Bi-Weekly</option>
-          <option value="bi-weekly">Weekly</option>
-          {/* Add more options based on your requirements */}
+          <option value="accelerated-bi-weekly">Accelerated Bi-Weekly</option>
+          <option value="weekly">Weekly</option>
+          <option value="accelerated-weekly">Accelerated Weekly</option>
         </select>
       </div>
       <div className="input-group">
