@@ -1,5 +1,6 @@
 // AdvancedCalculator.js
 import React, { useState } from 'react';
+import { provincesAndCitiesData } from './ProvinceAndCities';
 
 const AdvancedCalculator = ({ onCalculate }) => {
   const [province, setProvince] = useState('');
@@ -19,7 +20,14 @@ const AdvancedCalculator = ({ onCalculate }) => {
   const [paydownOptions, setPaydownOptions] = useState('');
   const [totalCost, setTotalCost] = useState(null);
 
-  
+  const handleProvinceChange = (e) => {
+    const selectedProvince = e.target.value;
+    setProvince(selectedProvince);
+    // Reset city when province changes
+    setCity('');
+  };
+
+
   const handleCalculate = () => {
     const lumpSumPaymentValue = parseFloat(lumpSumPayment) || 0;
     const downPaymentValue = parseFloat(downPayment) || 0;
@@ -80,12 +88,34 @@ const AdvancedCalculator = ({ onCalculate }) => {
       <br></br>
       <div className="input-group">
         <label>Province</label>
-        <input
-          type="text"
+        <select
           value={province}
-          onChange={(e) => setProvince(e.target.value)}
-        />
+          onChange={handleProvinceChange}
+        >
+          <option value="">Select Province</option>
+          {provincesAndCitiesData.provinces.map((prov) => (
+            <option key={prov} value={prov}>
+              {prov}
+            </option>
+          ))}
+        </select>
       </div>
+      {province && (
+      <div className="input-group">
+        <label>City</label>
+        <select
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          >
+            <option value="">Select City</option>
+            {provincesAndCitiesData.cities[province].map((cty) => (
+              <option key={cty} value={cty}>
+                {cty}
+              </option>
+            ))}
+          </select>
+      </div>
+      )}
       <div className="input-group">
         <label>Payment Frequency</label>
         <select
@@ -121,14 +151,7 @@ const AdvancedCalculator = ({ onCalculate }) => {
           onChange={(e) => setMortgageInsurance(e.target.value)}
         />
       </div>
-<div className="input-group">
-  <label>City</label>
-  <input
-    type="text"
-    value={city}
-    onChange={(e) => setCity(e.target.value)}
-  />
-</div>
+
 <div className="input-group">
   <label>Land Transfer Tax ($)</label>
   <input

@@ -26,31 +26,11 @@
     margin-bottom: 20px;
   }
   
-  .input-group {
-    margin: 0px 0px 0px 0px;
-  }
-  
-  label {
-    font-size: 18px;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
+  h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
     color: #333;
   }
-
-  input {
-    width: 100%;
-    padding: 10px;
-    margin: 2px 2px 15px -7px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-  }
-  
-  input:focus {
-  border-color: #ff5e7d;
-}
 
   button {
     width: 50%;
@@ -74,13 +54,6 @@
     text-align: left;
   }
   
-  
-  h3 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #333;
-  }
-
   .results span {
     font-size: 30px;
     font-weight: bold;
@@ -145,13 +118,35 @@
 }
 
 /* Input group container */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 2px 2px 15px -7px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+input:hover {
+  border-color: #ff5e7d;
+}
+
 .input-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin: 0px 0px 20px 0px;
 }
 
 /* Label */
+label {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+}
+
 .input-group label {
   font-size: 16px;
   margin-bottom: 8px;
@@ -162,16 +157,17 @@
 .input-group select {
   padding: 10px;
   font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
   background-color: #fff;
+  margin: 2px 2px 15px -7px;
   color: #333;
   cursor: pointer;
   transition: border-color 0.3s;
 }
 
 .input-group select:hover {
-  border-color: #007bff; 
+  border-color: #ff5e7d; 
 }
 
 .input-group select:focus {
