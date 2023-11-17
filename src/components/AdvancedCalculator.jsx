@@ -76,6 +76,8 @@ const AdvancedCalculator = ({ onCalculate }) => {
   return (
     <div>
       {/* Add input fields and UI for the advanced features */}
+      <br></br>
+      <br></br>
       <div className="input-group">
         <label>Province</label>
         <input

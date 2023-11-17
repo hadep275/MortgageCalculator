@@ -125,7 +125,7 @@
   background-color: transparent; 
 }
 
-/* Add tooltip style */
+/* Tooltip */
 .advanced-button::after {
   content: "Advanced"; 
   position: absolute;
@@ -139,7 +139,51 @@
   transition: opacity 0.9s ease-in-out;
 }
 
-/* Show tooltip on hover */
+/* Tooltip on hover */
 .advanced-button:hover::after {
   opacity: 1;
+}
+
+/* Input group container */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* Label */
+.input-group label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333; 
+}
+
+/* Dropdown */
+.input-group select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.input-group select:hover {
+  border-color: #007bff; 
+}
+
+.input-group select:focus {
+  outline: none;
+  border-color: #007bff; 
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+}
+
+.input-group select option {
+  font-size: 14px;
+}
+
+.input-group select option:not(:last-child) {
+  margin-bottom: 500px;
 }
