@@ -25,7 +25,7 @@ const Modal = ({ onClose, monthlyPayment, calculationSummary }) => {
             {calculationSummary.map((item) => (
               <tr key={item.category}>
                 <td>{item.category}</td>
-                <td>{item.term}</td>
+                <td>{item.term}</td> 
                 <td>{item.amortizationPeriod}</td>
               </tr>
             ))}
