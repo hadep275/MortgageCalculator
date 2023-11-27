@@ -15,6 +15,7 @@ const Calculator = () => {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [calculationSummary, setCalculationSummary] = useState([]);
+  const [userInputs, setUserInputs] = useState({});
 
   const calculateMortgage = () => {
     const principal = parseFloat(loanAmount);
@@ -27,11 +28,21 @@ const Calculator = () => {
       ((principal + taxes) * monthlyRate) /
       (1 - Math.pow(1 + monthlyRate, -totalMonths));
 
+    // Collect user inputs
+  const currentUserInputs = {
+    'Loan Amount': loanAmount,
+    'Interest Rate': interestRate,
+    'Loan Term': `${loanTermYears} Years ${loanTermMonths} Months`,
+    'Property Taxes': propertyTaxes,
+    // Add more user inputs as needed
+  };
+
       setCalculationSummary([
         { category: 'Number of payments', term: '60', amortizationPeriod: '300' },
       ]);
 
     setMonthlyPayment(monthlyPaymentResult.toFixed(2));
+    setUserInputs(currentUserInputs);
     setShowModal(true);
   };
   const closeModal = () => {
@@ -101,7 +112,7 @@ const Calculator = () => {
     )}
 
 {showAdvanced && <AdvancedCalculator monthlyPayment={monthlyPayment} />}
-{showModal && ( <Modal onClose={closeModal} monthlyPayment={monthlyPayment} calculationSummary={calculationSummary} />)}
+{showModal && ( <Modal onClose={closeModal} monthlyPayment={monthlyPayment} userInputs={userInputs} calculationSummary={calculationSummary} />)}
 
   </div>
 );

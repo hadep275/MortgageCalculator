@@ -4,12 +4,31 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import '../styles/Modal.css';
 
-const Modal = ({ onClose, monthlyPayment, calculationSummary }) => {
+const Modal = ({ onClose, monthlyPayment, userInputs, calculationSummary }) => {
   return ReactDOM.createPortal(
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <span className="close-btn" onClick={onClose}>&times;</span>
         <h2>Monthly Payment ${monthlyPayment}</h2>
+
+         {/* User Inputs */}
+         <h3>User Inputs</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(userInputs).map(([param, value]) => (
+              <tr key={param}>
+                <td>{param}</td>
+                <td>{value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
         {/* Calculation Summary */}
         <h3>Calculation Summary</h3>
@@ -42,6 +61,7 @@ const Modal = ({ onClose, monthlyPayment, calculationSummary }) => {
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   monthlyPayment: PropTypes.number.isRequired,
+  userInputs: PropTypes.object.isRequired,
   calculationSummary: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
