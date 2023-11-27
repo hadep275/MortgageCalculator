@@ -28,18 +28,40 @@ const Calculator = () => {
       ((principal + taxes) * monthlyRate) /
       (1 - Math.pow(1 + monthlyRate, -totalMonths));
 
-    // Collect user inputs
+  const principalPayments = [];
+  const interestPayments = [];
+
+  let remainingBalance = principal;
+  for (let i = 1; i <= totalMonths; i++) {
+    const interestPayment = remainingBalance * monthlyRate;
+    const principalPayment = monthlyPaymentResult - interestPayment;
+    remainingBalance -= principalPayment;
+
+    principalPayments.push(principalPayment);
+    interestPayments.push(interestPayment);
+  }
+
+  const totalPrincipal = principalPayments.reduce((acc, val) => acc + val, 0);
+  const totalInterest = interestPayments.reduce((acc, val) => acc + val, 0);
+  const totalPayment = totalPrincipal + totalInterest;
+
   const currentUserInputs = {
     'Loan Amount': loanAmount,
     'Interest Rate': interestRate,
     'Loan Term': `${loanTermYears} Years ${loanTermMonths} Months`,
     'Property Taxes': propertyTaxes,
-    // Add more user inputs as needed
   };
 
-      setCalculationSummary([
-        { category: 'Number of payments', term: '60', amortizationPeriod: '300' },
-      ]);
+  const additionalCalculationSummary = [
+    { category: 'Mortgage Payment', term: `$${monthlyPaymentResult.toFixed(2)}`, amortizationPeriod: '' },
+    { category: 'Prepayment', term: '$0.00', amortizationPeriod: '' },
+    { category: 'Principal Payments', term: `$${totalPrincipal.toFixed(2)}`, amortizationPeriod: '' },
+    { category: 'Interest Payments', term: `$${totalInterest.toFixed(2)}`, amortizationPeriod: '' },
+    { category: 'Total Cost', term: `$${totalPayment.toFixed(2)}`, amortizationPeriod: '' },
+  ];
+
+  setCalculationSummary(additionalCalculationSummary);
+
 
     setMonthlyPayment(monthlyPaymentResult.toFixed(2));
     setUserInputs(currentUserInputs);

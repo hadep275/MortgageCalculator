@@ -9,7 +9,8 @@ const Modal = ({ onClose, monthlyPayment, userInputs, calculationSummary }) => {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <span className="close-btn" onClick={onClose}>&times;</span>
-        <h2>Monthly Payment ${monthlyPayment}</h2>
+        <h2>Monthly Payment </h2>
+        <h1>${monthlyPayment}</h1>
 
          {/* User Inputs */}
          <h3>User Inputs</h3>
