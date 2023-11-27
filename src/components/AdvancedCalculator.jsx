@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { provincesAndCitiesData } from './ProvinceAndCities';
 
-const AdvancedCalculator = ({ monthlyPayment, onCalculate }) => {
+const AdvancedCalculator = ({ monthlyPayment, onCalculate, loanAmount }) => {
   const [province, setProvince] = useState('');
   const [paymentFrequency, setPaymentFrequency] = useState('monthly', 'bi-weekly', 'weekly');
   const [lumpSumPayment, setLumpSumPayment] = useState('');
@@ -33,7 +33,6 @@ const AdvancedCalculator = ({ monthlyPayment, onCalculate }) => {
     const homePrice = parseFloat(loanAmount) || 0;
     const downPaymentPercentage = parseFloat(downPayment) || 0;
     const downPaymentAmount = (downPaymentPercentage / 100) * homePrice;
-    // const downPaymentValue = parseFloat(downPayment) || 0;
     const mortgageInsuranceValue = parseFloat(mortgageInsurance) || 0;
     const landTransferTaxValue = parseFloat(landTransferTax) || 0;
     const lawyerFeesValue = parseFloat(lawyerFees) || 0;
