@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import AdvancedCalculator from './AdvancedCalculator';
+import Modal from './Modal';
 import '../styles/Calculator.css';
 
 const Calculator = () => {
@@ -12,6 +13,7 @@ const Calculator = () => {
   const [propertyTaxes, setPropertyTaxes] = useState('');
   const [monthlyPayment, setMonthlyPayment] = useState(null);
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const calculateMortgage = () => {
     const principal = parseFloat(loanAmount);
@@ -25,6 +27,10 @@ const Calculator = () => {
       (1 - Math.pow(1 + monthlyRate, -totalMonths));
 
     setMonthlyPayment(monthlyPaymentResult.toFixed(2));
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -84,15 +90,15 @@ const Calculator = () => {
       </button>
     {monthlyPayment !== null && (
       <div className="results">
-        <h3>Monthly Payment</h3>
-        <span>${monthlyPayment}</span>
+        {/* <h3>Monthly Payment</h3>
+        <span>${monthlyPayment}</span> */}
       </div>
     )}
 
-    {/* <button className="advanced-button" onClick={() => setShowAdvanced(!showAdvanced)}>
-        {showAdvanced ? <FontAwesomeIcon icon={faMinus} />: <FontAwesomeIcon icon={faPlus} />}
-      </button> */}
-      {showAdvanced && <AdvancedCalculator monthlyPayment={monthlyPayment} />}
+{showAdvanced && <AdvancedCalculator monthlyPayment={monthlyPayment} />}
+{showModal && (
+        <Modal onClose={closeModal} monthlyPayment={monthlyPayment} />
+      )}
 
   </div>
 );
