@@ -28,11 +28,12 @@ const Calculator = () => {
       ((principal + taxes) * monthlyRate) /
       (1 - Math.pow(1 + monthlyRate, -totalMonths));
 
+  const termMonths = 5 * 12;
   const principalPayments = [];
   const interestPayments = [];
 
   let remainingBalance = principal;
-  for (let i = 1; i <= totalMonths; i++) {
+  for (let i = 1; i <= termMonths; i++) {
     const interestPayment = remainingBalance * monthlyRate;
     const principalPayment = monthlyPaymentResult - interestPayment;
     remainingBalance -= principalPayment;

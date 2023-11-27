@@ -12,7 +12,7 @@ const Modal = ({ onClose, monthlyPayment, userInputs, calculationSummary }) => {
         <h2>Monthly Payment </h2>
         <h1>${monthlyPayment}</h1>
 
-         {/* User Inputs */}
+         {/* User Inputs
          <h3>User Inputs</h3>
         <table>
           <thead>
@@ -29,7 +29,7 @@ const Modal = ({ onClose, monthlyPayment, userInputs, calculationSummary }) => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
 
         {/* Calculation Summary */}
         <h3>Calculation Summary</h3>
@@ -61,7 +61,8 @@ const Modal = ({ onClose, monthlyPayment, userInputs, calculationSummary }) => {
 
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
-  monthlyPayment: PropTypes.number.isRequired,
+  // monthlyPayment: PropTypes.number.isRequired,
+  monthlyPayment: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   userInputs: PropTypes.object.isRequired,
   calculationSummary: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
