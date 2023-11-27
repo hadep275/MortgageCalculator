@@ -14,6 +14,7 @@ const Calculator = () => {
   const [monthlyPayment, setMonthlyPayment] = useState(null);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [calculationSummary, setCalculationSummary] = useState([]);
 
   const calculateMortgage = () => {
     const principal = parseFloat(loanAmount);
@@ -25,6 +26,10 @@ const Calculator = () => {
     const monthlyPaymentResult =
       ((principal + taxes) * monthlyRate) /
       (1 - Math.pow(1 + monthlyRate, -totalMonths));
+
+      setCalculationSummary([
+        { category: 'Number of payments', term: '60', amortizationPeriod: '300' },
+      ]);
 
     setMonthlyPayment(monthlyPaymentResult.toFixed(2));
     setShowModal(true);
@@ -96,9 +101,7 @@ const Calculator = () => {
     )}
 
 {showAdvanced && <AdvancedCalculator monthlyPayment={monthlyPayment} />}
-{showModal && (
-        <Modal onClose={closeModal} monthlyPayment={monthlyPayment} />
-      )}
+{showModal && ( <Modal onClose={closeModal} monthlyPayment={monthlyPayment} calculationSummary={calculationSummary} />)}
 
   </div>
 );
