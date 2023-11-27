@@ -6,8 +6,9 @@ import '../styles/Calculator.css';
 
 const Calculator = () => {
   const [loanAmount, setLoanAmount] = useState('');
+  const [loanTermYears, setLoanTermYears] = useState('30');
+  const [loanTermMonths, setLoanTermMonths] = useState('0');
   const [interestRate, setInterestRate] = useState('');
-  const [loanTerm, setLoanTerm] = useState('');
   const [propertyTaxes, setPropertyTaxes] = useState('');
   const [monthlyPayment, setMonthlyPayment] = useState(null);
   const [showAdvanced, setShowAdvanced] = useState(false);
@@ -15,13 +16,13 @@ const Calculator = () => {
   const calculateMortgage = () => {
     const principal = parseFloat(loanAmount);
     const monthlyRate = (parseFloat(interestRate) / 100) / 12;
-    const numberOfPayments = parseFloat(loanTerm) * 12;
+    const totalMonths = parseInt(loanTermYears, 10) * 12 + parseInt(loanTermMonths, 10);
     const taxes = parseFloat(propertyTaxes);
 
 
     const monthlyPaymentResult =
       ((principal + taxes) * monthlyRate) /
-      (1 - Math.pow(1 + monthlyRate, -numberOfPayments));
+      (1 - Math.pow(1 + monthlyRate, -totalMonths));
 
     setMonthlyPayment(monthlyPaymentResult.toFixed(2));
   };
@@ -46,12 +47,29 @@ const Calculator = () => {
       />
     </div>
     <div className="input-group">
-      <label>Loan Term (Years)</label>
-      <input
-        type="number"
-        value={loanTerm}
-        onChange={(e) => setLoanTerm(e.target.value)}
-      />
+    <label>Loan Term</label>
+  <div className="loan-term-inputs">
+   <select
+            value={loanTermYears}
+            onChange={(e) => setLoanTermYears(e.target.value)}
+          >
+            {[...Array(51).keys()].map((year) => (
+              <option key={year} value={year.toString()}>
+                {year} {year === 1 ? 'Year' : 'Years'}
+              </option>
+            ))}
+          </select>
+          <select
+            value={loanTermMonths}
+            onChange={(e) => setLoanTermMonths(e.target.value)}
+          >
+            {[...Array(13).keys()].map((month) => (
+              <option key={month} value={month.toString()}>
+                {month} {month === 1 ? 'Month' : 'Months'}
+              </option>
+            ))}
+          </select>
+  </div>
     </div>
     <div className="input-group">
         <label>Property Taxes ($)</label>
@@ -74,7 +92,7 @@ const Calculator = () => {
     {/* <button className="advanced-button" onClick={() => setShowAdvanced(!showAdvanced)}>
         {showAdvanced ? <FontAwesomeIcon icon={faMinus} />: <FontAwesomeIcon icon={faPlus} />}
       </button> */}
-      {showAdvanced && <AdvancedCalculator />}
+      {showAdvanced && <AdvancedCalculator monthlyPayment={monthlyPayment} />}
 
   </div>
 );

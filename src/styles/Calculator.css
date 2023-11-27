@@ -141,6 +141,21 @@ input:focus {
   margin: 0px 0px 20px 0px;
 }
 
+/* Add this style to handle the new loan term input structure */
+.loan-term-inputs {
+  display: flex;
+}
+
+.loan-term-inputs input {
+  width: 100%;
+  margin: 0px 10px 0px 10px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+
 /* Label */
 label {
   font-size: 18px;

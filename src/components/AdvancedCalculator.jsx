@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { provincesAndCitiesData } from './ProvinceAndCities';
 
-const AdvancedCalculator = ({ onCalculate }) => {
+const AdvancedCalculator = ({ monthlyPayment, onCalculate }) => {
   const [province, setProvince] = useState('');
   const [paymentFrequency, setPaymentFrequency] = useState('monthly', 'bi-weekly', 'weekly');
   const [lumpSumPayment, setLumpSumPayment] = useState('');
@@ -30,7 +30,10 @@ const AdvancedCalculator = ({ onCalculate }) => {
 
   const handleCalculate = () => {
     const lumpSumPaymentValue = parseFloat(lumpSumPayment) || 0;
-    const downPaymentValue = parseFloat(downPayment) || 0;
+    const homePrice = parseFloat(loanAmount) || 0;
+    const downPaymentPercentage = parseFloat(downPayment) || 0;
+    const downPaymentAmount = (downPaymentPercentage / 100) * homePrice;
+    // const downPaymentValue = parseFloat(downPayment) || 0;
     const mortgageInsuranceValue = parseFloat(mortgageInsurance) || 0;
     const landTransferTaxValue = parseFloat(landTransferTax) || 0;
     const lawyerFeesValue = parseFloat(lawyerFees) || 0;
@@ -44,7 +47,7 @@ const AdvancedCalculator = ({ onCalculate }) => {
 
     const calculatedTotalCost =
       lumpSumPaymentValue +
-      downPaymentValue +
+      downPaymentAmount +
       mortgageInsuranceValue +
       landTransferTaxValue +
       lawyerFeesValue +
@@ -54,17 +57,17 @@ const AdvancedCalculator = ({ onCalculate }) => {
       utilitiesValue +
       condoFeesValue +
       homeInsuranceValue +
-      paydownOptionsValue;
+      paydownOptionsValue +
+      parseFloat(monthlyPayment) || 0;
 
       setTotalCost(calculatedTotalCost);
-    console.log('Total Cost:', totalCost);
+    console.log('Total Cost:', calculatedTotalCost);
 
     if (typeof onCalculate === 'function') {
       onCalculate({
         province,
         paymentFrequency,
         lumpSumPayment,
-        downPayment,
         mortgageInsurance,
         city,
         landTransferTax,
@@ -76,6 +79,7 @@ const AdvancedCalculator = ({ onCalculate }) => {
         condoFees,
         homeInsurance,
         paydownOptions,
+        downPayment: downPaymentAmount,
         totalCost: calculatedTotalCost,
       });
     }
@@ -137,7 +141,7 @@ const AdvancedCalculator = ({ onCalculate }) => {
         />
       </div>
       <div className="input-group">
-        <label>Down Payment ($)</label>
+        <label>Down Payment (%)</label>
         <input
           type="number"
           value={downPayment}
