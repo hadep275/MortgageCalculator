@@ -49,7 +49,7 @@ const Calculator = () => {
     <div className="input-group">
     <label>Loan Term</label>
   <div className="loan-term-inputs">
-   <select
+   <select 
             value={loanTermYears}
             onChange={(e) => setLoanTermYears(e.target.value)}
           >
@@ -67,7 +67,7 @@ const Calculator = () => {
               <option key={month} value={month.toString()}>
                 {month} {month === 1 ? 'Month' : 'Months'}
               </option>
-            ))}
+             ))}
           </select>
   </div>
     </div>
