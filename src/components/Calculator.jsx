@@ -31,20 +31,38 @@ const Calculator = () => {
   const termMonths = 5 * 12;
   const principalPayments = [];
   const interestPayments = [];
+  const amortizationMonths = parseInt(loanTermYears, 10) * 12 + parseInt(loanTermMonths, 10);
 
-  let remainingBalance = principal;
-  for (let i = 1; i <= termMonths; i++) {
-    const interestPayment = remainingBalance * monthlyRate;
-    const principalPayment = monthlyPaymentResult - interestPayment;
-    remainingBalance -= principalPayment;
+  const calculatePayments = (months) => {
+    const principalPayments = [];
+    const interestPayments = [];
+    
+    let remainingBalance = principal;
+    let totalPrincipalAccumulator = 0;
 
-    principalPayments.push(principalPayment);
-    interestPayments.push(interestPayment);
-  }
+    for (let i = 1; i <= months; i++) {
+      const interestPayment = remainingBalance * monthlyRate;
+      const principalPayment = monthlyPaymentResult - interestPayment;
+      remainingBalance -= principalPayment;
+
+      principalPayments.push(principalPayment);
+      interestPayments.push(interestPayment);
+      totalPrincipalAccumulator += principalPayment;
+    }
 
   const totalPrincipal = principalPayments.reduce((acc, val) => acc + val, 0);
   const totalInterest = interestPayments.reduce((acc, val) => acc + val, 0);
   const totalPayment = totalPrincipal + totalInterest;
+
+  return {
+    totalPrincipal: totalPrincipalAccumulator, 
+    totalInterest,
+    totalPayment: totalPrincipalAccumulator + totalInterest,
+  };
+};
+
+const termPayments = calculatePayments(termMonths);
+const amortizationPayments = calculatePayments(amortizationMonths);
 
   const currentUserInputs = {
     'Loan Amount': loanAmount,
@@ -54,11 +72,12 @@ const Calculator = () => {
   };
 
   const additionalCalculationSummary = [
+    { category: 'Number of Payments', term: termMonths.toString(), amortizationPeriod: amortizationMonths.toString() },
     { category: 'Mortgage Payment', term: `$${monthlyPaymentResult.toFixed(2)}`, amortizationPeriod: '' },
     { category: 'Prepayment', term: '$0.00', amortizationPeriod: '' },
-    { category: 'Principal Payments', term: `$${totalPrincipal.toFixed(2)}`, amortizationPeriod: '' },
-    { category: 'Interest Payments', term: `$${totalInterest.toFixed(2)}`, amortizationPeriod: '' },
-    { category: 'Total Cost', term: `$${totalPayment.toFixed(2)}`, amortizationPeriod: '' },
+    { category: 'Principal Payments', term: `$${termPayments.totalPrincipal.toFixed(2)}`, amortizationPeriod: '' },
+    { category: 'Interest Payments', term: `$${termPayments.totalInterest.toFixed(2)}`, amortizationPeriod: '' },
+    { category: 'Total Cost', term: `$${termPayments.totalPayment.toFixed(2)}`, amortizationPeriod: '' },
   ];
 
   setCalculationSummary(additionalCalculationSummary);
