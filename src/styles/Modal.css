@@ -59,7 +59,7 @@
 table {
   width: 90%;
   margin-top: 20px;
-  border-collapse: collapse;
+  border-collapse:separate;
 }
 
 th, td {
