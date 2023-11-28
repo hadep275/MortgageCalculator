@@ -71,13 +71,17 @@ const amortizationPayments = calculatePayments(amortizationMonths);
     'Property Taxes': propertyTaxes,
   };
 
+  const formatNumberWithCommas = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+  
   const additionalCalculationSummary = [
     { category: 'Number of Payments', term: termMonths.toString(), amortizationPeriod: amortizationMonths.toString() },
-    { category: 'Mortgage Payment', term: `$${monthlyPaymentResult.toFixed(2)}`, amortizationPeriod: `$${monthlyPaymentResult.toFixed(2)}` },
+    { category: 'Mortgage Payment', term: `$${formatNumberWithCommas(monthlyPaymentResult.toFixed(2))}`, amortizationPeriod: `$${formatNumberWithCommas(monthlyPaymentResult.toFixed(2))}` },
     { category: 'Prepayment', term: '$0.00', amortizationPeriod: '$0.00' },
-    { category: 'Principal Payments', term: `$${termPayments.totalPrincipal.toFixed(2)}`, amortizationPeriod: `$${amortizationPayments.totalPrincipal.toFixed(2)}` },
-    { category: 'Interest Payments', term: `$${termPayments.totalInterest.toFixed(2)}`, amortizationPeriod: `$${amortizationPayments.totalInterest.toFixed(2)}` },
-    { category: 'Total Cost', term: `$${termPayments.totalPayment.toFixed(2)}`, amortizationPeriod: `$${amortizationPayments.totalPayment.toFixed(2)}` },
+    { category: 'Principal Payments', term: `$${formatNumberWithCommas(termPayments.totalPrincipal.toFixed(2))}`, amortizationPeriod: `$${formatNumberWithCommas(amortizationPayments.totalPrincipal.toFixed(2))}` },
+    { category: 'Interest Payments', term: `$${formatNumberWithCommas(termPayments.totalInterest.toFixed(2))}`, amortizationPeriod: `$${formatNumberWithCommas(amortizationPayments.totalInterest.toFixed(2))}` },
+    { category: 'Total Cost', term: `$${formatNumberWithCommas(termPayments.totalPayment.toFixed(2))}`, amortizationPeriod: `$${formatNumberWithCommas(amortizationPayments.totalPayment.toFixed(2))}` },
   ];
 
   setCalculationSummary(additionalCalculationSummary);
